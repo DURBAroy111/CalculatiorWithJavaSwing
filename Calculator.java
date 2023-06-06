@@ -6,7 +6,7 @@ public class Calculator implements ActionListener {
     JFrame frame;
     JTextField textField;
     JButton[] numberButtons= new JButton[10];
-    JButton[] functionButtons= new JButton[9];
+    JButton[] functionButtons= new JButton[10];
     JButton addButton, subButton, mulButton, divButton, sqrtButton;
     JButton decimalButton, equalsButton, deleteButton, clearButton, negButton;
     JPanel panel;
@@ -20,7 +20,7 @@ public class Calculator implements ActionListener {
     Calculator() {
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 550);
+        frame.setSize(420, 650);
         frame.setLayout(null);
 
 
@@ -35,9 +35,10 @@ public class Calculator implements ActionListener {
         divButton = new JButton("/");
         decimalButton = new JButton(".");
         equalsButton = new JButton("=");
-       clearButton = new JButton("CLEAR");
-       deleteButton = new JButton("DELETE");
+       clearButton = new JButton("AC");
+       deleteButton = new JButton("Del");
        negButton = new JButton("(-)");
+        sqrtButton = new JButton("Sqrt");
 
         functionButtons[0]= addButton;
         functionButtons[1]= subButton;
@@ -48,9 +49,10 @@ public class Calculator implements ActionListener {
         functionButtons[6]= clearButton;
         functionButtons[7]= deleteButton;
         functionButtons[8]= negButton;
+        functionButtons[9] = sqrtButton;
 
 
-        for(int i=0; i < 9; i++){
+        for(int i=0; i < 10; i++){
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFont(myFont);
             functionButtons[i].setFocusable(false);
@@ -62,9 +64,12 @@ public class Calculator implements ActionListener {
             numberButtons[i].setFont(myFont);
             numberButtons[i].setFocusable(false);
         }
-        negButton.setBounds(50, 430, 100, 50);
-        deleteButton.setBounds(150,430,100,50);
-        clearButton.setBounds(250,430,100,50);
+       // negButton.setBounds(50, 430, 100, 50);
+        deleteButton.setBounds(50,490,150,50);
+        clearButton.setBounds(200,490,150,50);
+        negButton.setBounds(50, 430, 150, 50);
+        sqrtButton.setBounds(200, 430, 150, 50);
+
 
 
         panel= new JPanel();
@@ -93,6 +98,7 @@ public class Calculator implements ActionListener {
         frame.add(deleteButton);
         frame.add(negButton);
         frame.add(clearButton);
+        frame.add(sqrtButton);
         frame.add(textField);
         frame.setVisible(true);
     }
@@ -167,6 +173,10 @@ public class Calculator implements ActionListener {
             temp*= -1;
             textField.setText(String.valueOf(temp));
         }
+        if (e.getSource() == sqrtButton) {
+            double number = Double.parseDouble(textField.getText());
+            double result = Math.sqrt(number);
+            textField.setText(String.valueOf(result));
+        }
        }
      }
-    
