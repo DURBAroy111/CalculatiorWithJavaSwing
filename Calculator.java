@@ -92,9 +92,13 @@ public class Calculator implements ActionListener {
         frame.setVisible(true);
     }
     public static void main(String[] args) {
-        new Calculator();
+       Calculator clac= new Calculator();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+          for(int j=0; j<10; j++){
+              if(e.getSource()== numberButtons[j])
+              {textField.setText(textField.getText().concat(String.valueOf(j)));}
+          }
     }}
